@@ -1,0 +1,13 @@
+{
+  "sensorID": "QWERTYJUMPERLOC",
+  "tracks": [
+    {
+      "signalForce": 0.23,
+      "trackedValue": "NASA",
+      "location": {
+        "lat": 29.5578,
+        "lon": -95.0892
+      }
+    }
+  ]
+}

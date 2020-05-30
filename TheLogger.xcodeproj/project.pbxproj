@@ -21,6 +21,17 @@
 		881A8E0E24828A2400494B93 /* StyleGuide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881A8E0824828A2400494B93 /* StyleGuide.swift */; };
 		881A8E0F24828A2400494B93 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881A8E0924828A2400494B93 /* UIView+Extensions.swift */; };
 		881A8E1724828C8B00494B93 /* MainRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881A8E1624828C8A00494B93 /* MainRouter.swift */; };
+		881A8E202482901500494B93 /* GodSpeedSensor2.json in Resources */ = {isa = PBXBuildFile; fileRef = 881A8E1A2482901400494B93 /* GodSpeedSensor2.json */; };
+		881A8E212482901500494B93 /* JumperSensor1.json in Resources */ = {isa = PBXBuildFile; fileRef = 881A8E1B2482901500494B93 /* JumperSensor1.json */; };
+		881A8E222482901500494B93 /* FreezingHellSensor1.json in Resources */ = {isa = PBXBuildFile; fileRef = 881A8E1C2482901500494B93 /* FreezingHellSensor1.json */; };
+		881A8E232482901500494B93 /* GodSpeedSensor1.json in Resources */ = {isa = PBXBuildFile; fileRef = 881A8E1D2482901500494B93 /* GodSpeedSensor1.json */; };
+		881A8E242482901500494B93 /* FreezingHellSensor2.json in Resources */ = {isa = PBXBuildFile; fileRef = 881A8E1E2482901500494B93 /* FreezingHellSensor2.json */; };
+		881A8E252482901500494B93 /* JumperSensor2.json in Resources */ = {isa = PBXBuildFile; fileRef = 881A8E1F2482901500494B93 /* JumperSensor2.json */; };
+		881A8E282482906400494B93 /* SimulatedSonsorsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881A8E272482906400494B93 /* SimulatedSonsorsModel.swift */; };
+		881A8E2A248290A900494B93 /* TrackModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881A8E29248290A900494B93 /* TrackModel.swift */; };
+		881A8E2C2482910A00494B93 /* LocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881A8E2B2482910A00494B93 /* LocationModel.swift */; };
+		881A8E2F248291BF00494B93 /* SimulatedSensorsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881A8E2E248291BF00494B93 /* SimulatedSensorsViewModel.swift */; };
+		881A8E31248292C000494B93 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881A8E30248292C000494B93 /* Enums.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +63,17 @@
 		881A8E0824828A2400494B93 /* StyleGuide.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyleGuide.swift; sourceTree = "<group>"; };
 		881A8E0924828A2400494B93 /* UIView+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		881A8E1624828C8A00494B93 /* MainRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainRouter.swift; sourceTree = "<group>"; };
+		881A8E1A2482901400494B93 /* GodSpeedSensor2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = GodSpeedSensor2.json; sourceTree = "<group>"; };
+		881A8E1B2482901500494B93 /* JumperSensor1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = JumperSensor1.json; sourceTree = "<group>"; };
+		881A8E1C2482901500494B93 /* FreezingHellSensor1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = FreezingHellSensor1.json; sourceTree = "<group>"; };
+		881A8E1D2482901500494B93 /* GodSpeedSensor1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = GodSpeedSensor1.json; sourceTree = "<group>"; };
+		881A8E1E2482901500494B93 /* FreezingHellSensor2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = FreezingHellSensor2.json; sourceTree = "<group>"; };
+		881A8E1F2482901500494B93 /* JumperSensor2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = JumperSensor2.json; sourceTree = "<group>"; };
+		881A8E272482906400494B93 /* SimulatedSonsorsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimulatedSonsorsModel.swift; sourceTree = "<group>"; };
+		881A8E29248290A900494B93 /* TrackModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackModel.swift; sourceTree = "<group>"; };
+		881A8E2B2482910A00494B93 /* LocationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationModel.swift; sourceTree = "<group>"; };
+		881A8E2E248291BF00494B93 /* SimulatedSensorsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimulatedSensorsViewModel.swift; sourceTree = "<group>"; };
+		881A8E30248292C000494B93 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,8 +175,9 @@
 		881A8E1124828A6B00494B93 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				881A8E0724828A2400494B93 /* OutputLog.swift */,
 				881A8E0824828A2400494B93 /* StyleGuide.swift */,
+				881A8E0724828A2400494B93 /* OutputLog.swift */,
+				881A8E30248292C000494B93 /* Enums.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -162,6 +185,7 @@
 		881A8E1224828A7400494B93 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				881A8E1824828FC500494B93 /* Simulated Sensors */,
 				881A8E1024828A6200494B93 /* Extensions */,
 				881A8E1124828A6B00494B93 /* Utils */,
 			);
@@ -174,6 +198,47 @@
 				880EC67324805E4A002285DF /* ViewController.swift */,
 			);
 			path = Features;
+			sourceTree = "<group>";
+		};
+		881A8E1824828FC500494B93 /* Simulated Sensors */ = {
+			isa = PBXGroup;
+			children = (
+				881A8E262482905400494B93 /* Models */,
+				881A8E2D248291A400494B93 /* ViewModels */,
+				881A8E1924828FF900494B93 /* Resources */,
+			);
+			path = "Simulated Sensors";
+			sourceTree = "<group>";
+		};
+		881A8E1924828FF900494B93 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				881A8E1B2482901500494B93 /* JumperSensor1.json */,
+				881A8E1F2482901500494B93 /* JumperSensor2.json */,
+				881A8E1C2482901500494B93 /* FreezingHellSensor1.json */,
+				881A8E1E2482901500494B93 /* FreezingHellSensor2.json */,
+				881A8E1D2482901500494B93 /* GodSpeedSensor1.json */,
+				881A8E1A2482901400494B93 /* GodSpeedSensor2.json */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		881A8E262482905400494B93 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				881A8E272482906400494B93 /* SimulatedSonsorsModel.swift */,
+				881A8E29248290A900494B93 /* TrackModel.swift */,
+				881A8E2B2482910A00494B93 /* LocationModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		881A8E2D248291A400494B93 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				881A8E2E248291BF00494B93 /* SimulatedSensorsViewModel.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -257,9 +322,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				881A8E232482901500494B93 /* GodSpeedSensor1.json in Resources */,
+				881A8E222482901500494B93 /* FreezingHellSensor1.json in Resources */,
+				881A8E212482901500494B93 /* JumperSensor1.json in Resources */,
+				881A8E242482901500494B93 /* FreezingHellSensor2.json in Resources */,
 				880EC67F24805E4E002285DF /* LaunchScreen.storyboard in Resources */,
 				880EC67C24805E4E002285DF /* Assets.xcassets in Resources */,
+				881A8E252482901500494B93 /* JumperSensor2.json in Resources */,
 				880EC67724805E4A002285DF /* Main.storyboard in Resources */,
+				881A8E202482901500494B93 /* GodSpeedSensor2.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -278,13 +349,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				880EC67424805E4A002285DF /* ViewController.swift in Sources */,
+				881A8E2A248290A900494B93 /* TrackModel.swift in Sources */,
+				881A8E282482906400494B93 /* SimulatedSonsorsModel.swift in Sources */,
 				881A8E0F24828A2400494B93 /* UIView+Extensions.swift in Sources */,
 				880EC67024805E4A002285DF /* AppDelegate.swift in Sources */,
 				881A8E0B24828A2400494B93 /* Data+Extensions.swift in Sources */,
 				881A8E0C24828A2400494B93 /* UIColor+Extensions.swift in Sources */,
+				881A8E31248292C000494B93 /* Enums.swift in Sources */,
 				881A8E1724828C8B00494B93 /* MainRouter.swift in Sources */,
 				881A8E0D24828A2400494B93 /* OutputLog.swift in Sources */,
+				881A8E2F248291BF00494B93 /* SimulatedSensorsViewModel.swift in Sources */,
 				880EC67224805E4A002285DF /* SceneDelegate.swift in Sources */,
+				881A8E2C2482910A00494B93 /* LocationModel.swift in Sources */,
 				880EC67A24805E4A002285DF /* TheLogger.xcdatamodeld in Sources */,
 				881A8E0E24828A2400494B93 /* StyleGuide.swift in Sources */,
 			);
