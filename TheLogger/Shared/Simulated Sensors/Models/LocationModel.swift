@@ -9,6 +9,6 @@
 import Foundation
 
 struct LocationModel: Codable {
-    var lat: Double
-    var lon: Double
+    let lat: Double
+    let lon: Double
 }

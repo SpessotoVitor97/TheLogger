@@ -1,0 +1,32 @@
+{
+  "mobileID": "323DDDDNJHTO234",
+  "tracks": [
+    {
+      "sensorID": "QWERTYJUMPERLOC",
+      "signalForce": 0.23,
+      "trackedValue": "Palestra Italia",
+      "location": {
+            "lat": -23.5232,
+            "lon": -46.67371
+      }
+    },
+    {
+        "sensorID": "QWERTYFREEZINGHELL",
+        "signalForce": 0.23,
+        "trackedValue": "141 x (10^30)°C",
+        "location": {
+            "lat": -23.5232,
+            "lon": -46.67371
+      }
+    },
+    {
+        "sensorID": "QWERTYGODSPEED",
+        "signalForce": 0.23,
+        "trackedValue": "500kM/h",
+        "location": {
+            "lat": -23.5232,
+            "lon": -46.67371
+      }
+    }
+  ]
+}

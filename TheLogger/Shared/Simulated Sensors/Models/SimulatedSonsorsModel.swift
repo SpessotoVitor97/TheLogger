@@ -9,7 +9,6 @@
 import Foundation
 
 struct SimulatedSensorModel: Codable {
-    var sensorID: String
-    var tracks: [TracksModel]
-    
+    let sensorID: String
+    let tracks: TracksModel
 }

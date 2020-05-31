@@ -1,6 +1,6 @@
 {
   "sensorID": "QWERTYFREEZINGHELL",
-  "tracks": [
+  "tracks":
     {
       "signalForce": 0.23,
       "trackedValue": "141 x (10^30)°C",
@@ -9,5 +9,4 @@
         "lon": -46.67371
       }
     }
-  ]
 }

@@ -156,6 +156,19 @@ class ViewController: UIViewController {
             viewModel = SimulatedSensorsViewModel(with: model)
         }
     }
+    
+    private func buildOutputJSON() {
+        guard let sensorInfo = viewModel?.getSensorInfo() else { return }
+        guard let mobileID = UIDevice.current.identifierForVendor?.uuidString else { return }
+        let jsonToSend = OutputJSONModel(mobileID: mobileID, tracks: sensorInfo)
+        
+        do {
+            let jsonData = try JSONEncoder().encode(jsonToSend)
+            OutputLog.log(with: "Sending...", data: jsonData)
+        } catch {
+            print(error)
+        }
+    }
 }
 
 //*************************************************
@@ -163,7 +176,7 @@ class ViewController: UIViewController {
 //*************************************************
 extension ViewController: OutputTimerViewDelegate {
     func didFinishCountDown() {
-        print("Finish timer. Send the data.")
+        buildOutputJSON()
     }
 }
 
