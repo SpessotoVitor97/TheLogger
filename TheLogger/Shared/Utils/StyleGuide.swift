@@ -16,7 +16,11 @@ struct StyleGuide {
     struct ViewStyle {
         struct View {
             static var backgroundColor: UIColor {
-                return StyleGuide.Color.white
+                return .white
+            }
+            
+            static var secondBackgroudColor: UIColor {
+                return StyleGuide.Color.gray
             }
         }
         
@@ -120,9 +124,9 @@ extension StyleGuide {
             case .red:
                 return StyleGuide.Color.red
             case .black:
-                return StyleGuide.Color.black
+                return .black
             case .white:
-                return StyleGuide.Color.white
+                return .white
             }
         }
     }
@@ -134,8 +138,6 @@ extension StyleGuide {
 extension StyleGuide {
     
     private struct Color {
-        static var white = UIColor.white
-        static var black = UIColor.black
         static var blue = UIColor(hexadecimal: 0x2A6CB4)
         static var secondaryBlue = UIColor(hexadecimal: 0x5F90C6)
         static var tertiaryBlue = UIColor(hexadecimal: 0xC8D9EB)
@@ -148,7 +150,6 @@ extension StyleGuide {
         static var gray = UIColor(hexadecimal: 0xEFEFEF)
         static var secondaryGray = UIColor(hexadecimal: 0xFAFAFA)
         static var tertiaryGray = UIColor(hexadecimal: 0xCCCCCC)
-        static var yellow = UIColor(hexadecimal: 0xFFBC00)
     }
     
     private struct Padding {
@@ -181,10 +182,17 @@ extension UILabel {
     }
 }
 
+extension UITextField {
+    func configure(style: StyleGuide.TextStyle, color: StyleGuide.TextColor = .primary) {
+        self.font = style.font
+        self.textColor = color.color
+    }
+}
+
 extension UIButton {
-    func configure(style: StyleGuide.TextStyle, color: StyleGuide.TextColor) {
+    func configure(style: StyleGuide.TextStyle, color: StyleGuide.TextColor = .primary) {
         self.titleLabel?.font = style.font
-        self.titleLabel?.textColor = color.color
+        self.setTitleColor(color.color, for: .normal)
     }
 }
 

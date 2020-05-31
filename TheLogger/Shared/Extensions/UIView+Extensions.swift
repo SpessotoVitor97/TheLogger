@@ -10,11 +10,10 @@ import Foundation
 import UIKit
 
 extension UIView {
-    /// Pins the view in a superview using autolayout.
-    ///
-    /// - Parameter parent: superview to pin the current view.
-    /// - Parameter synchronous: Pass `false` to dispatch the pinning to the next runloop on the main thread
-    ///   (i.e. if you are not on the main thread), or `true` to perform the pinning synchronously (before the function returns).
+    
+    //*************************************************
+    // MARK: - Public methods
+    //*************************************************
     func pinEdges(to parent: UIView, synchronous: Bool = false) {
         let pin: () -> Void = {
             self.translatesAutoresizingMaskIntoConstraints = false
