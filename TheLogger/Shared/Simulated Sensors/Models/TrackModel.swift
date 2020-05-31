@@ -9,8 +9,7 @@
 import Foundation
 
 struct TracksModel: Codable {
-    var signalForce: Float
-    var trackedValue: String
-    var location: LocationModel
-    
+    let signalForce: Float
+    let trackedValue: String
+    let location: LocationModel
 }

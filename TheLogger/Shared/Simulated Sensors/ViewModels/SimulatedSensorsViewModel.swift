@@ -30,20 +30,14 @@ class SimulatedSensorsViewModel {
     //*************************************************
     // MARK: - Public methods
     //*************************************************
-    func getSensorType() -> SensorType {
+    func getSensorInfo() -> [OutputTracksModel] {
         let sensorID = model.sensorID
-        
-        if sensorID == "QWERTYJUMPERLOC" {
-            return .location
-        } else if sensorID == "QWERTYFREEZINGHELL" {
-            return .temperature
-        } else {
-            return .windSpeed
-        }
-    }
-    
-    func getSensorTracks() -> [TracksModel] {
         let tracks = model.tracks
-        return tracks
+        let signalForce = tracks.signalForce
+        let trackedValue = tracks.trackedValue
+        let location: LocationModel = tracks.location
+        
+        let outputTracker = OutputTracksModel(sensorID: sensorID, signalForce: signalForce, trackedValue: trackedValue, location: location)
+        return [outputTracker]
     }
 }

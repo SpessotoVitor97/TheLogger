@@ -32,6 +32,10 @@
 		881A8E2C2482910A00494B93 /* LocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881A8E2B2482910A00494B93 /* LocationModel.swift */; };
 		881A8E2F248291BF00494B93 /* SimulatedSensorsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881A8E2E248291BF00494B93 /* SimulatedSensorsViewModel.swift */; };
 		881A8E31248292C000494B93 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881A8E30248292C000494B93 /* Enums.swift */; };
+		8846702124841C3100985CEF /* OutputJSON.json in Resources */ = {isa = PBXBuildFile; fileRef = 8846702024841C3100985CEF /* OutputJSON.json */; };
+		8846702A2484215500985CEF /* OutputJSONModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884670292484215500985CEF /* OutputJSONModel.swift */; };
+		8846702C2484217E00985CEF /* OutputTracksModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8846702B2484217E00985CEF /* OutputTracksModel.swift */; };
+		884670312484227400985CEF /* OutputJSONManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884670302484227400985CEF /* OutputJSONManager.swift */; };
 		88D99B1B2482B10800114BA3 /* SimulatedSensorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D99B1A2482B10800114BA3 /* SimulatedSensorManager.swift */; };
 		88D99B1D2482B18300114BA3 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D99B1C2482B18300114BA3 /* Network.swift */; };
 		88D99B222482DF9700114BA3 /* OutputTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D99B212482DF9700114BA3 /* OutputTimerView.swift */; };
@@ -77,6 +81,10 @@
 		881A8E2B2482910A00494B93 /* LocationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationModel.swift; sourceTree = "<group>"; };
 		881A8E2E248291BF00494B93 /* SimulatedSensorsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimulatedSensorsViewModel.swift; sourceTree = "<group>"; };
 		881A8E30248292C000494B93 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
+		8846702024841C3100985CEF /* OutputJSON.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = OutputJSON.json; sourceTree = "<group>"; };
+		884670292484215500985CEF /* OutputJSONModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutputJSONModel.swift; sourceTree = "<group>"; };
+		8846702B2484217E00985CEF /* OutputTracksModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutputTracksModel.swift; sourceTree = "<group>"; };
+		884670302484227400985CEF /* OutputJSONManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutputJSONManager.swift; sourceTree = "<group>"; };
 		88D99B1A2482B10800114BA3 /* SimulatedSensorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimulatedSensorManager.swift; sourceTree = "<group>"; };
 		88D99B1C2482B18300114BA3 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		88D99B212482DF9700114BA3 /* OutputTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutputTimerView.swift; sourceTree = "<group>"; };
@@ -192,6 +200,7 @@
 			isa = PBXGroup;
 			children = (
 				88D99B202482DF8A00114BA3 /* Components */,
+				8846701E24841C0C00985CEF /* OutputJSON */,
 				881A8E1824828FC500494B93 /* Simulated Sensors */,
 				881A8E1024828A6200494B93 /* Extensions */,
 				881A8E1124828A6B00494B93 /* Utils */,
@@ -202,6 +211,7 @@
 		881A8E1524828AE500494B93 /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				8846702F2484226000985CEF /* OutputJSONManager */,
 				88D99B192482B0D000114BA3 /* SimulatedSensorManager */,
 				880EC67324805E4A002285DF /* ViewController.swift */,
 			);
@@ -247,6 +257,40 @@
 				881A8E2E248291BF00494B93 /* SimulatedSensorsViewModel.swift */,
 			);
 			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		8846701E24841C0C00985CEF /* OutputJSON */ = {
+			isa = PBXGroup;
+			children = (
+				8846702424841C8700985CEF /* Models */,
+				8846701F24841C1B00985CEF /* Resources */,
+			);
+			path = OutputJSON;
+			sourceTree = "<group>";
+		};
+		8846701F24841C1B00985CEF /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				8846702024841C3100985CEF /* OutputJSON.json */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		8846702424841C8700985CEF /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				884670292484215500985CEF /* OutputJSONModel.swift */,
+				8846702B2484217E00985CEF /* OutputTracksModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		8846702F2484226000985CEF /* OutputJSONManager */ = {
+			isa = PBXGroup;
+			children = (
+				884670302484227400985CEF /* OutputJSONManager.swift */,
+			);
+			path = OutputJSONManager;
 			sourceTree = "<group>";
 		};
 		88D99B192482B0D000114BA3 /* SimulatedSensorManager */ = {
@@ -347,6 +391,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8846702124841C3100985CEF /* OutputJSON.json in Resources */,
 				881A8E232482901500494B93 /* GodSpeedSensor1.json in Resources */,
 				881A8E222482901500494B93 /* FreezingHellSensor1.json in Resources */,
 				881A8E212482901500494B93 /* JumperSensor1.json in Resources */,
@@ -377,9 +422,12 @@
 				881A8E2A248290A900494B93 /* TrackModel.swift in Sources */,
 				88D99B1D2482B18300114BA3 /* Network.swift in Sources */,
 				881A8E282482906400494B93 /* SimulatedSonsorsModel.swift in Sources */,
+				8846702C2484217E00985CEF /* OutputTracksModel.swift in Sources */,
 				881A8E0F24828A2400494B93 /* UIView+Extensions.swift in Sources */,
+				8846702A2484215500985CEF /* OutputJSONModel.swift in Sources */,
 				88D99B1B2482B10800114BA3 /* SimulatedSensorManager.swift in Sources */,
 				880EC67024805E4A002285DF /* AppDelegate.swift in Sources */,
+				884670312484227400985CEF /* OutputJSONManager.swift in Sources */,
 				881A8E0B24828A2400494B93 /* Data+Extensions.swift in Sources */,
 				881A8E0C24828A2400494B93 /* UIColor+Extensions.swift in Sources */,
 				881A8E31248292C000494B93 /* Enums.swift in Sources */,
