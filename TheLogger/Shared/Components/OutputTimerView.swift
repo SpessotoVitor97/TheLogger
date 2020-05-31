@@ -43,20 +43,11 @@ class OutputTimerView {
     init(with view: UIView) {
         self.view = view
     }
-//    override init(frame: CGRect) {
-//        self.init()
-//        self.view.frame = frame
-//        setup()
-//    }
-//
-//    required init?(coder: NSCoder) {
-//        fatalError("init(coder:) has not been implemented")
-//    }
     
     //*************************************************
     // MARK: - Public methods
     //*************************************************
-    func setup(with timeLeft: Double = 10) {
+    func setup(with timeLeft: Double = 0) {
         drawBgShape()
         drawTimeLeftShape()
         addTimeTextField()

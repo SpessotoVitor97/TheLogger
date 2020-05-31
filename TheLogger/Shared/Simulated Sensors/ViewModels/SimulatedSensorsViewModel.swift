@@ -11,6 +11,11 @@ import Foundation
 class SimulatedSensorsViewModel {
     
     //*************************************************
+    // MARK: - Public properties
+    //*************************************************
+    var hasData = false
+    
+    //*************************************************
     // MARK: - Private properties
     //*************************************************
     private var model: SimulatedSensorModel
