@@ -18,8 +18,9 @@ class ViewController: UIViewController {
     //*************************************************
     // MARK: - Private properties
     //*************************************************
-    private var model: SimulatedSensorModel?
+    private var viewModel: SimulatedSensorsViewModel?
     private var sensors: [SensorType] = []
+    private var readyToReceive = false
     
     private let manager = SimulatedSensorManager()
     
@@ -32,18 +33,19 @@ class ViewController: UIViewController {
         setupButton()
         setupTextField()
         setupOutputTimer()
-//        if let localData = self.readLocalFile(forName: "JumperSensor1") {
-//            self.parse(jsonData: localData)
-//        }
     }
     
     //*************************************************
     // MARK: - Actions
     //*************************************************
     @objc func getSensors() {
-        sensors = manager.identifyConectedSensors()
-        setupTitleLabel(with: "Conected sensors")
-        setupSensorsLabels()
+        manager.identifyConectedSensors { (sensors) in
+            self.sensors = sensors
+            setupTitleLabel(with: "Conected sensors")
+            setupSensorsLabels()
+            readyToReceive = true
+            setupViewModel()
+        }
     }
     
     //*************************************************
@@ -107,37 +109,6 @@ class ViewController: UIViewController {
     }
     
     private func setupSensorsLabels() {
-//        var labelsArray: [UILabel] = []
-//
-//        sensors.forEach { (sensor) in
-//            let sensorLabel = UILabel()
-//            sensorLabel.configure(style: .bigText, color: .blue)
-//            sensorLabel.text = sensor.type
-//            labelsArray.append(sensorLabel)
-//        }
-//
-//        let stackView = UIStackView(arrangedSubviews: labelsArray)
-//        stackView.axis = .horizontal
-//        stackView.distribution = .fillProportionally
-//        stackView.alignment = .center
-//        stackView.spacing = 5
-//        stackView.translatesAutoresizingMaskIntoConstraints = false
-//
-//        view.addSubview(stackView)
-//
-//        //autolayout the stack view - pin 30 up 20 left 20 right 30 down
-//        let viewsDictionary = ["stackView":stackView]
-//        let stackView_H = NSLayoutConstraint.constraints(withVisualFormat: "H:|-20-[stackView]-20-|",  //horizontal constraint 20 points from left and right side
-//            options: NSLayoutConstraint.FormatOptions(rawValue: 0),
-//            metrics: nil,
-//            views: viewsDictionary)
-//        let stackView_V = NSLayoutConstraint.constraints(withVisualFormat: "V:|-30-[stackView]-30-|", //vertical constraint 30 points from top and bottom
-//            options: NSLayoutConstraint.FormatOptions(rawValue:0),
-//            metrics: nil,
-//            views: viewsDictionary)
-//        view.addConstraints(stackView_H)
-//        view.addConstraints(stackView_V)
-        
         let frame = UIScreen.main.bounds
         let labelFrame = CGRect(x: frame.minX + 10, y: frame.minY + 150, width: frame.width - 20, height: 31)
         
@@ -174,36 +145,22 @@ class ViewController: UIViewController {
         view.addSubview(timerView)
 
         let timer = OutputTimerView(with: timerView)
+        timer.delegate = self
         timer.setup(with: 10)
         timer.start()
-
-        timer.delegate = self
-        
     }
     
-    private func parse(jsonData: Data) {
-        do {
-            let decodedData = try JSONDecoder().decode(SimulatedSensorModel.self,
-                                                       from: jsonData)
-            model = decodedData
-        } catch {
-            print(error)
+    private func setupViewModel() {
+        if readyToReceive {
+            guard let model = manager.model else { return }
+            viewModel = SimulatedSensorsViewModel(with: model)
         }
-    }
-    
-    private func readLocalFile(forName name: String) -> Data? {
-        do {
-            if let bundlePath = Bundle.main.path(forResource: name, ofType: ".json"),
-                let jsonData = try String(contentsOfFile: bundlePath).data(using: .utf8) {
-                return jsonData
-            }
-        } catch {
-            print(error)
-        }
-        return nil
     }
 }
 
+//*************************************************
+// MARK: - OutputTimerViewDelegate
+//*************************************************
 extension ViewController: OutputTimerViewDelegate {
     func didFinishCountDown() {
         print("Finish timer. Send the data.")
