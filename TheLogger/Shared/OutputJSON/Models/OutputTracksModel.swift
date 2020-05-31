@@ -9,8 +9,11 @@
 import Foundation
 
 struct OutputTracksModel: Codable {
+//    var sensorID: String
+//    var signalForce: Float
+//    var trackedValue: String
+//    var location: LocationModel
+    
     var sensorID: String
-    var signalForce: Float
-    var trackedValue: String
-    var location: LocationModel
+    var tracks: [TracksModel]
 }

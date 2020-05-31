@@ -10,5 +10,5 @@ import Foundation
 
 struct OutputJSONModel: Codable {
     var mobileID: String
-    var tracks: [OutputTracksModel]
+    var tracks: [SimulatedSensorModel]
 }

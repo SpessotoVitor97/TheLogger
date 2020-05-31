@@ -20,7 +20,8 @@ class ViewController: UIViewController {
     //*************************************************
     private var viewModel: SimulatedSensorsViewModel?
     private var sensors: [SensorType] = []
-    private var readyToReceive = false
+    private var readyToSend = false
+    private var outputJSON = [String: Any]()
     
     private let manager = SimulatedSensorManager()
     
@@ -41,10 +42,9 @@ class ViewController: UIViewController {
     @objc func getSensors() {
         manager.identifyConectedSensors { (sensors) in
             self.sensors = sensors
-            setupTitleLabel(with: "Conected sensors")
-            setupSensorsLabels()
-            readyToReceive = true
-            setupViewModel()
+            self.setupTitleLabel(with: "Conected sensors")
+            self.setupSensorsLabels()
+            self.setupViewModel()
         }
     }
     
@@ -151,19 +151,19 @@ class ViewController: UIViewController {
     }
     
     private func setupViewModel() {
-        if readyToReceive {
-            guard let model = manager.model else { return }
-            viewModel = SimulatedSensorsViewModel(with: model)
-        }
+        guard let model = manager.model else { return }
+        viewModel = SimulatedSensorsViewModel(with: model)
     }
     
-    private func buildOutputJSON() {
-        guard let sensorInfo = viewModel?.getSensorInfo() else { return }
-        guard let mobileID = UIDevice.current.identifierForVendor?.uuidString else { return }
-        let jsonToSend = OutputJSONModel(mobileID: mobileID, tracks: sensorInfo)
+    private func buildOutputJSON(mobileID: String, tracks: [String: Any]) {
+        outputJSON = [
+            "MobileID": mobileID,
+            "tracks": tracks
+        ]
+        print(outputJSON)
         
         do {
-            let jsonData = try JSONEncoder().encode(jsonToSend)
+            let jsonData = try JSONSerialization.data(withJSONObject: outputJSON, options: [])
             OutputLog.log(with: "Sending...", data: jsonData)
         } catch {
             print(error)
@@ -176,7 +176,10 @@ class ViewController: UIViewController {
 //*************************************************
 extension ViewController: OutputTimerViewDelegate {
     func didFinishCountDown() {
-        buildOutputJSON()
+        let tracks = manager.json
+        guard let mobileID = UIDevice.current.identifierForVendor?.uuidString else { return }
+        buildOutputJSON(mobileID: mobileID, tracks: tracks)
+        print("Sending...")
     }
 }
 

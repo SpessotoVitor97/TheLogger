@@ -8,24 +8,37 @@
 
 import Foundation
 
+protocol SimulatedSensorManagerDelegate: NSObject {
+    func appendToOutputJSON(newTrack: SimulatedSensorModel)
+}
+
 class SimulatedSensorManager {
+    typealias conectedSensorsHandler = (([SensorType]) -> Void)
+    
     //*************************************************
     // MARK: - Public properties
     //*************************************************
     var model: SimulatedSensorModel?
+    var json = [String: Any]()
     
     //*************************************************
     // MARK: - Private properties
     //*************************************************
     private let network = Network()
+    private weak var delegate: SimulatedSensorManagerDelegate?
     
     //*************************************************
     // MARK: - Public methods
     //*************************************************
-    func identifyConectedSensors(completion: (([SensorType]) -> Void)) {
+    func identifyConectedSensors(completion: @escaping conectedSensorsHandler) {
         let sensors = network.getSensors()
-        if let localData = self.readLocalFile(forName: "JumperSensor1") {
-            self.parse(jsonData: localData)
+        let mockedJSONs = ["JumperSensor1", "FreezingHellSensor1", "GodSpeedSensor1"]
+        mockedJSONs.forEach { (fileName) in
+            if let localData = self.readLocalFile(forName: fileName) {
+                self.parse(jsonData: localData)
+                guard let sensorID = self.model?.sensorID else { return }
+                json[sensorID] = self.JSONToDictionary(data: localData)
+            }
         }
         completion(sensors)
     }
@@ -42,7 +55,7 @@ extension SimulatedSensorManager {
                 return jsonData
             }
         } catch {
-            print(error)
+            print("error reading local file: \(error)")
         }
         return nil
     }
@@ -53,7 +66,18 @@ extension SimulatedSensorManager {
                                                        from: jsonData)
             model = decodedData
         } catch {
-            print(error)
+            print("error parsing JSON: \(error)")
         }
+    }
+    
+    private func JSONToDictionary(data: Data) -> Any? {
+        do {
+            let object = try JSONSerialization.jsonObject(with: data, options: [])
+            guard let json = object as? [String: Any] else { return nil }
+            return json
+        } catch {
+            print("error transforming JSON to dictionary: \(error)")
+        }
+        return nil
     }
 }
