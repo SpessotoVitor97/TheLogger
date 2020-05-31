@@ -16,7 +16,7 @@ enum SensorType {
     var type: String {
         switch self {
         case .location:
-            return "location"
+            return "Location"
         case .temperature:
             return "Temperature"
         case .windSpeed:

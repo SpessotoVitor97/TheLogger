@@ -10,7 +10,10 @@ import Foundation
 
 extension Data {
     
-    public static func fromJSON(fileName: String,
+    //*************************************************
+    // MARK: - Public methods
+    //*************************************************
+    static func fromJSON(fileName: String,
                                 file: StaticString = #file,
                                 line: UInt = #line) throws -> Data {
         
