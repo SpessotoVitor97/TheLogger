@@ -14,16 +14,20 @@ class ViewController: UIViewController {
     // MARK: - UI Shared Components
     //*************************************************
     private let titleLabel = UILabel()
+    private var timer: OutputTimerView? = nil
+    private var alert = UIAlertController()
     
     //*************************************************
     // MARK: - Private properties
     //*************************************************
     private var viewModel: SimulatedSensorsViewModel?
     private var sensors: [SensorType] = []
-    private var readyToSend = false
+    private var isReadyToSend = false
+    private var hasConectedSensors = false
     private var outputJSON = [String: Any]()
     
     private let manager = SimulatedSensorManager()
+    private let seconds: Double = 10
     
     //*************************************************
     // MARK: - Lifecycle
@@ -33,19 +37,30 @@ class ViewController: UIViewController {
         setupUI()
         setupButton()
         setupTextField()
-        setupOutputTimer()
+        setupOutputTimerView()
     }
     
     //*************************************************
     // MARK: - Actions
     //*************************************************
-    @objc func getSensors() {
+    @objc private func getSensorsButtonTapped() {
         manager.identifyConectedSensors { (sensors) in
             self.sensors = sensors
             self.setupTitleLabel(with: "Conected sensors")
             self.setupSensorsLabels()
             self.setupViewModel()
+            self.hasConectedSensors = true
         }
+    }
+    
+    @objc private func dismissAlertControllerButtonTapped() {
+        let action = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
+            self.alert.view.superview?.isUserInteractionEnabled = true
+            self.alert.dismiss(animated: true) {
+                self.timer?.start(with: self.seconds)
+            }
+        }
+        alert.addAction(action)
     }
     
     //*************************************************
@@ -72,11 +87,11 @@ class ViewController: UIViewController {
         let frame = UIScreen.main.bounds
 
         button.frame = CGRect(x: frame.minX + 10, y: frame.maxY - 100, width: frame.width - 20, height: 41)
-        button.setTitle("Get Sensors", for: .normal)
+        button.setTitle("Conect Sensors", for: .normal)
         button.layer.cornerRadius = 10
         button.backgroundColor = StyleGuide.ViewStyle.Components.backgroundColor
         button.configure(style: .link, color: .white)
-        button.addTarget(self, action: #selector(getSensors), for: .touchUpInside)
+        button.addTarget(self, action: #selector(getSensorsButtonTapped), for: .touchUpInside)
         
         view.addSubview(button)
     }
@@ -135,7 +150,7 @@ class ViewController: UIViewController {
         view.addSubview(sensorLabel3)
     }
     
-    private func setupOutputTimer() {
+    private func setupOutputTimerView() {
         let timerView = UIView()
         let frame = UIScreen.main.bounds
 
@@ -144,10 +159,14 @@ class ViewController: UIViewController {
         timerView.backgroundColor = StyleGuide.ViewStyle.View.secondBackgroudColor
         view.addSubview(timerView)
 
-        let timer = OutputTimerView(with: timerView)
-        timer.delegate = self
-        timer.setup(with: 10)
-        timer.start()
+        timer = OutputTimerView(with: timerView)
+        timer?.delegate = self
+        timer?.setup()
+        startTimer(withTimeleftOf: seconds)
+    }
+    
+    private func startTimer(withTimeleftOf seconds: Double) {
+        timer?.start(with: seconds)
     }
     
     private func setupViewModel() {
@@ -155,18 +174,19 @@ class ViewController: UIViewController {
         viewModel = SimulatedSensorsViewModel(with: model)
     }
     
-    private func buildOutputJSON(mobileID: String, tracks: [String: Any]) {
+    private func buildAndSendOutputJSON(mobileID: String, tracks: [String: Any], readyToSend: Bool = false) {
         outputJSON = [
             "MobileID": mobileID,
             "tracks": tracks
         ]
-        print(outputJSON)
         
-        do {
-            let jsonData = try JSONSerialization.data(withJSONObject: outputJSON, options: [])
-            OutputLog.log(with: "Sending...", data: jsonData)
-        } catch {
-            print(error)
+        if readyToSend {
+            do {
+                let jsonData = try JSONSerialization.data(withJSONObject: outputJSON, options: .prettyPrinted)
+                OutputLog.log(with: "Sending...", data: jsonData)
+            } catch {
+                print("Error trying to send the data: \(error)")
+            }
         }
     }
 }
@@ -176,10 +196,24 @@ class ViewController: UIViewController {
 //*************************************************
 extension ViewController: OutputTimerViewDelegate {
     func didFinishCountDown() {
-        let tracks = manager.json
-        guard let mobileID = UIDevice.current.identifierForVendor?.uuidString else { return }
-        buildOutputJSON(mobileID: mobileID, tracks: tracks)
-        print("Sending...")
+        
+        if hasConectedSensors {
+            let tracks = manager.json
+            guard let mobileID = UIDevice.current.identifierForVendor?.uuidString else { return }
+            isReadyToSend = true
+            buildAndSendOutputJSON(mobileID: mobileID, tracks: tracks, readyToSend: isReadyToSend)
+            
+        } else {
+            alert = UIAlertController(title: "There are no sensors currently conected...", message: "Please, tap on 'Conect Sensors' button to fetch sensors.", preferredStyle: .actionSheet)
+            let action = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
+                self.alert.view.superview?.isUserInteractionEnabled = true
+                self.alert.dismiss(animated: true) {
+                    self.timer?.start(with: self.seconds)
+                }
+            }
+            alert.addAction(action)
+            present(alert, animated: true, completion: nil)
+        }
     }
 }
 
