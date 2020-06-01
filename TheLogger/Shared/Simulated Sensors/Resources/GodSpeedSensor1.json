@@ -1,0 +1,12 @@
+{
+  "sensorID": "QWERTYGODSPEED",
+  "tracks":
+    {
+      "signalForce": 0.23,
+      "trackedValue": "500kM/h",
+      "location": {
+        "lat": -23.5232,
+        "lon": -46.67371
+      }
+    }
+}
