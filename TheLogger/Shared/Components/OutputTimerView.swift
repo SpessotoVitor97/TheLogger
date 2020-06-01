@@ -47,18 +47,17 @@ class OutputTimerView {
     //*************************************************
     // MARK: - Public methods
     //*************************************************
-    func setup(with timeLeft: Double = 0) {
+    func setup() {
         drawBgShape()
         drawTimeLeftShape()
         addTimeTextField()
         strokeIt.fromValue = 0
         strokeIt.toValue = 1
-        strokeIt.duration = timeLeft
-        
-        self.timeLeft = timeLeft
     }
     
-    func start() {
+    func start(with timeLeft: Double) {
+        self.timeLeft = timeLeft
+        strokeIt.duration = timeLeft
         timeLabel.isUserInteractionEnabled = false
         timeLeftShapeLayer.add(strokeIt, forKey: nil)
         endTime = Date().addingTimeInterval(timeLeft)
