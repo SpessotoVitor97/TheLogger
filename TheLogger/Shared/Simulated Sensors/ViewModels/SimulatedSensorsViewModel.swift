@@ -33,13 +33,6 @@ class SimulatedSensorsViewModel {
     func getSensorInfo() -> [String: Any] {
         let sensorID = model.sensorID
         let tracks = model.tracks
-//        let signalForce = tracks.signalForce
-//        let trackedValue = tracks.trackedValue
-//        let location: LocationModel = tracks.location
-//
-//        let outputTracker = OutputTracksModel(sensorID: sensorID, signalForce: signalForce, trackedValue: trackedValue, location: location)
-        
-//        let outputTracker = SimulatedSensorModel(sensorID: sensorID, tracks: tracks)
         
         let outputTracker: [String: Any] = [
             "SensorID": sensorID,
