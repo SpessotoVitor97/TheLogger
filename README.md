@@ -7,4 +7,5 @@
   - Nenhuma.
   
 - Melhorias:
-  - Criar testes unitários.
+  - Criar testes unitários;
+  - Incluir autolayout.
