@@ -14,6 +14,7 @@ class ViewController: UIViewController {
     // MARK: - UI Shared Components
     //*************************************************
     private let titleLabel = UILabel()
+    private let loadingView = UIActivityIndicatorView()
     private var timer: OutputTimerView? = nil
     private var alert = UIAlertController()
     
@@ -27,7 +28,7 @@ class ViewController: UIViewController {
     private var outputJSON = [String: Any]()
     
     private let manager = SimulatedSensorManager()
-    private let seconds: Double = 10
+    private let seconds: Double = 900
     
     //*************************************************
     // MARK: - Lifecycle
@@ -36,7 +37,6 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         setupUI()
         setupButton()
-        setupTextField()
         setupOutputTimerView()
     }
     
@@ -44,12 +44,32 @@ class ViewController: UIViewController {
     // MARK: - Actions
     //*************************************************
     @objc private func getSensorsButtonTapped() {
+        alert = UIAlertController(title: nil, message: "Please wait...", preferredStyle: .alert)
+        
+        loadingView.hidesWhenStopped = true
+        loadingView.style = UIActivityIndicatorView.Style.medium
+        loadingView.startAnimating()
+        
+        view.addSubview(loadingView)
+        
+        view.pinEdges(to: view)
+        present(alert, animated: true, completion: nil)
+        
+        getSensors {
+            self.loadingView.stopAnimating()
+            self.alert.dismiss(animated: true) {
+                self.setupTitleLabel(with: "Conected sensors")
+                self.setupSensorsLabels()
+                self.setupViewModel()
+                self.hasConectedSensors = true
+            }
+        }
+    }
+    
+    private func getSensors(completion: @escaping (() -> Void)) {
         manager.identifyConectedSensors { (sensors) in
             self.sensors = sensors
-            self.setupTitleLabel(with: "Conected sensors")
-            self.setupSensorsLabels()
-            self.setupViewModel()
-            self.hasConectedSensors = true
+            completion()
         }
     }
     
@@ -96,33 +116,6 @@ class ViewController: UIViewController {
         view.addSubview(button)
     }
     
-    private func setupTextField() {
-        let frame = UIScreen.main.bounds
-
-        let textField1 = UITextField()
-        let width1 = (frame.width/3)
-        textField1.frame = CGRect(x: frame.minX + 10, y: frame.minY + 250, width: width1 - 30, height: 31)
-        textField1.backgroundColor = .white
-        textField1.layer.borderWidth = 3.0
-        textField1.layer.cornerRadius = 10
-
-        let textField2 = UITextField()
-        textField2.frame = CGRect(x: width1 + 3, y: frame.minY + 250, width: width1 - 30, height: 31)
-        textField2.backgroundColor = .white
-        textField2.layer.borderWidth = 3.0
-        textField2.layer.cornerRadius = 10
-
-        let textField3 = UITextField()
-        textField3.frame = CGRect(x: frame.maxX - 125, y: frame.minY + 250, width: width1 - 30, height: 31)
-        textField3.backgroundColor = .white
-        textField3.layer.borderWidth = 3.0
-        textField3.layer.cornerRadius = 10
-
-        view.addSubview(textField1)
-        view.addSubview(textField2)
-        view.addSubview(textField3)
-    }
-    
     private func setupSensorsLabels() {
         let frame = UIScreen.main.bounds
         let labelFrame = CGRect(x: frame.minX + 10, y: frame.minY + 150, width: frame.width - 20, height: 31)
@@ -151,15 +144,7 @@ class ViewController: UIViewController {
     }
     
     private func setupOutputTimerView() {
-        let timerView = UIView()
-        let frame = UIScreen.main.bounds
-
-        timerView.frame = CGRect(x: frame.minX + 30, y: frame.midY - 100, width: frame.width - 62, height: 290)
-        timerView.layer.cornerRadius = 10
-        timerView.backgroundColor = StyleGuide.ViewStyle.View.secondBackgroudColor
-        view.addSubview(timerView)
-
-        timer = OutputTimerView(with: timerView)
+        timer = OutputTimerView(with: view)
         timer?.delegate = self
         timer?.setup()
         startTimer(withTimeleftOf: seconds)
