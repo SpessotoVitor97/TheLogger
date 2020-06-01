@@ -37,7 +37,15 @@ class SimulatedSensorManager {
             if let localData = self.readLocalFile(forName: fileName) {
                 self.parse(jsonData: localData)
                 guard let sensorID = self.model?.sensorID else { return }
-                json[sensorID] = self.JSONToDictionary(data: localData)
+                var sensorType: SensorType = .location
+                if sensorID == "QWERTYJUMPERLOC" {
+                    sensorType = .location
+                } else if sensorID == "QWERTYFREEZINGHELL" {
+                    sensorType = .temperature
+                } else {
+                    sensorType = .windSpeed
+                }
+                json[sensorType.type] = self.JSONToDictionary(data: localData)
             }
         }
         completion(sensors)
