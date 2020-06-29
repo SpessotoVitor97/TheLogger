@@ -28,7 +28,7 @@ class ViewController: UIViewController {
     private var outputJSON = [String: Any]()
     
     private let manager = SimulatedSensorManager()
-    private let seconds: Double = 900
+    private let seconds: Double = 5
     
     //*************************************************
     // MARK: - Lifecycle
@@ -190,7 +190,7 @@ extension ViewController: OutputTimerViewDelegate {
             
         } else {
             alert = UIAlertController(title: "There are no sensors currently conected...", message: "Please, tap on 'Conect Sensors' button to fetch sensors.", preferredStyle: .actionSheet)
-            let action = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
+            let action = UIAlertAction(title: "Cancel", style: .destructive) { (action) in
                 self.alert.view.superview?.isUserInteractionEnabled = true
                 self.alert.dismiss(animated: true) {
                     self.timer?.start(with: self.seconds)
